@@ -312,6 +312,8 @@
 #define GPLL4_VOTE						303
 #define GCC_SDCC1_CDCCAL_SLEEP_CLK				304
 #define GCC_SDCC1_CDCCAL_FF_CLK					305
+#define GCC_COPSS_SMMU_AHB_CLK					306
+#define GCC_LPSS_SMMU_AHB_CLK					307
 
 /* gdscs */
 #define USB_HS_HSIC_GDSC					0
