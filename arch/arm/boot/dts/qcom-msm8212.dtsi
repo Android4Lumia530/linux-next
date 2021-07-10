@@ -373,5 +373,58 @@
 			     <GIC_PPI 1
 				(GIC_CPU_MASK_RAW(15) | IRQ_TYPE_LEVEL_LOW)>;
 	};
+
+
+	smd {
+		compatible = "qcom,smd";
+
+		rpm {
+			interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+			qcom,ipc = <&apcs 8 0>;
+			qcom,smd-edge = <15>;
+
+			rpm_requests {
+				compatible = "qcom,rpm-msm8212";
+				qcom,smd-channels = "rpm_requests";
+
+				rpmcc: clock-controller {
+					compatible = "qcom,rpmcc-msm8212", "qcom,rpmcc";
+					#clock-cells = <1>;
+				};
+
+				pm8110-regulators {
+					compatible = "qcom,rpm-pm8110-regulators";
+
+					pm8110_s1: s1 {};
+					pm8110_s2: s2 {};
+					pm8110_s3: s3 {};
+					pm8110_s4: s4 {};
+
+					pm8110_l1: l1 {};
+					pm8110_l2: l2 {};
+					pm8110_l3: l3 {};
+					pm8110_l4: l4 {};
+					pm8110_l5: l5 {};
+					pm8110_l6: l6 {};
+					pm8110_l7: l7 {};
+					pm8110_l8: l8 {};
+					pm8110_l9: l9 {};
+					pm8110_l10: l10 {};
+					pm8110_l11: l11 {};
+					pm8110_l12: l12 {};
+					pm8110_l13: l13 {};
+					pm8110_l14: l14 {};
+					pm8110_l15: l15 {};
+					pm8110_l16: l16 {};
+					pm8110_l17: l17 {};
+					pm8110_l18: l18 {};
+					pm8110_l19: l19 {};
+					pm8110_l20: l20 {};
+					pm8110_l21: l21 {};
+					pm8110_l22: l22 {};
+				};
+			};
+		};
+	};
 };
 
