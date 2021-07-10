@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Common Board Device Tree for
+ * Microsoft Mobile MSM8212 Platforms
+ *
+ * Copyright (c) 2021, Konrad Dybcio
+ * Copyright (c) 2021, Ivaylo Ivanov <ivo.ivanov@null.net>
+ */
+#include "qcom-msm8212.dtsi"
+
+&blsp_i2c1 {
+	status = "okay";
+
+	/* Touchscreen */
+};
+
+&blsp_i2c3 {
+	status = "okay";
+};
+
+&blsp_i2c5 {
+	status = "okay";
+};
+
+&sdhc_1 {
+	status = "ok";
+};
