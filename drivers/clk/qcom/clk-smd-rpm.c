@@ -428,6 +428,69 @@ static const struct clk_ops clk_smd_rpm_branch_ops = {
 	.recalc_rate	= clk_smd_rpm_recalc_rate,
 };
 
+DEFINE_CLK_SMD_RPM(msm8212, pnoc_clk, pnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
+DEFINE_CLK_SMD_RPM(msm8212, snoc_clk, snoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 1);
+DEFINE_CLK_SMD_RPM(msm8212, cnoc_clk, cnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 2);
+DEFINE_CLK_SMD_RPM(msm8212, mmssnoc_ahb_clk, mmssnoc_ahb_a_clk, QCOM_SMD_RPM_BUS_CLK, 3);
+DEFINE_CLK_SMD_RPM(msm8212, bimc_clk, bimc_a_clk, QCOM_SMD_RPM_MEM_CLK, 0);
+DEFINE_CLK_SMD_RPM_QDSS(msm8212, qdss_clk, qdss_a_clk, QCOM_SMD_RPM_MISC_CLK, 1);
+DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8212, cxo_d0, cxo_d0_a, 1, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8212, cxo_d1, cxo_d1_a, 2, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8212, cxo_a0, cxo_a0_a, 4, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8212, cxo_a1, cxo_a1_a, 5, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8212, cxo_a2, cxo_a2_a, 6, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8212, diff_clk, diff_a_clk, 7, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER(msm8212, div_clk1, div_a_clk1, 11, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8212, cxo_d0_pin, cxo_d0_a_pin, 1, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8212, cxo_d1_pin, cxo_d1_a_pin, 2, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8212, cxo_a0_pin, cxo_a0_a_pin, 4, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8212, cxo_a1_pin, cxo_a1_a_pin, 5, 19200000);
+DEFINE_CLK_SMD_RPM_XO_BUFFER_PINCTRL(msm8212, cxo_a2_pin, cxo_a2_a_pin, 6, 19200000);
+
+static struct clk_smd_rpm *msm8212_clks[] = {
+	[RPM_SMD_PNOC_CLK]		= &msm8212_pnoc_clk,
+	[RPM_SMD_PNOC_A_CLK]		= &msm8212_pnoc_a_clk,
+	[RPM_SMD_SNOC_CLK]		= &msm8212_snoc_clk,
+	[RPM_SMD_SNOC_A_CLK]		= &msm8212_snoc_a_clk,
+	[RPM_SMD_CNOC_CLK]		= &msm8212_cnoc_clk,
+	[RPM_SMD_CNOC_A_CLK]		= &msm8212_cnoc_a_clk,
+	[RPM_SMD_MMSSNOC_AHB_CLK]	= &msm8212_mmssnoc_ahb_clk,
+	[RPM_SMD_MMSSNOC_AHB_A_CLK]	= &msm8212_mmssnoc_ahb_a_clk,
+	[RPM_SMD_BIMC_CLK]		= &msm8212_bimc_clk,
+	[RPM_SMD_BIMC_A_CLK]		= &msm8212_bimc_a_clk,
+	[RPM_SMD_QDSS_CLK]		= &msm8212_qdss_clk,
+	[RPM_SMD_QDSS_A_CLK]		= &msm8212_qdss_a_clk,
+	[RPM_SMD_CXO_D0]		= &msm8212_cxo_d0,
+	[RPM_SMD_CXO_D0_A]		= &msm8212_cxo_d0_a,
+	[RPM_SMD_CXO_D1]		= &msm8212_cxo_d1,
+	[RPM_SMD_CXO_D1_A]		= &msm8212_cxo_d1_a,
+	[RPM_SMD_CXO_A0]		= &msm8212_cxo_a0,
+	[RPM_SMD_CXO_A0_A]		= &msm8212_cxo_a0_a,
+	[RPM_SMD_CXO_A1]		= &msm8212_cxo_a1,
+	[RPM_SMD_CXO_A1_A]		= &msm8212_cxo_a1_a,
+	[RPM_SMD_CXO_A2]		= &msm8212_cxo_a2,
+	[RPM_SMD_CXO_A2_A]		= &msm8212_cxo_a2_a,
+	[RPM_SMD_DIFF_CLK]		= &msm8212_diff_clk,
+	[RPM_SMD_DIFF_A_CLK]		= &msm8212_diff_a_clk,
+	[RPM_SMD_DIV_CLK1]		= &msm8212_div_clk1,
+	[RPM_SMD_DIV_A_CLK1]		= &msm8212_div_a_clk1,
+	[RPM_SMD_CXO_D0_PIN]		= &msm8212_cxo_d0_pin,
+	[RPM_SMD_CXO_D0_A_PIN]		= &msm8212_cxo_d0_a_pin,
+	[RPM_SMD_CXO_D1_PIN]		= &msm8212_cxo_d1_pin,
+	[RPM_SMD_CXO_D1_A_PIN]		= &msm8212_cxo_d1_a_pin,
+	[RPM_SMD_CXO_A0_PIN]		= &msm8212_cxo_a0_pin,
+	[RPM_SMD_CXO_A0_A_PIN]		= &msm8212_cxo_a0_a_pin,
+	[RPM_SMD_CXO_A1_PIN]		= &msm8212_cxo_a1_pin,
+	[RPM_SMD_CXO_A1_A_PIN]		= &msm8212_cxo_a1_a_pin,
+	[RPM_SMD_CXO_A2_PIN]		= &msm8212_cxo_a2_pin,
+	[RPM_SMD_CXO_A2_A_PIN]		= &msm8212_cxo_a2_a_pin,
+};
+
+static const struct rpm_smd_clk_desc rpm_clk_msm8212 = {
+	.clks = msm8212_clks,
+	.num_clks = ARRAY_SIZE(msm8212_clks),
+};
+
 DEFINE_CLK_SMD_RPM(msm8916, pcnoc_clk, pcnoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 0);
 DEFINE_CLK_SMD_RPM(msm8916, snoc_clk, snoc_a_clk, QCOM_SMD_RPM_BUS_CLK, 1);
 DEFINE_CLK_SMD_RPM(msm8916, bimc_clk, bimc_a_clk, QCOM_SMD_RPM_MEM_CLK, 0);
@@ -1137,6 +1200,7 @@ static const struct rpm_smd_clk_desc rpm_clk_qcm2290 = {
 
 static const struct of_device_id rpm_smd_clk_match_table[] = {
 	{ .compatible = "qcom,rpmcc-mdm9607", .data = &rpm_clk_mdm9607 },
+	{ .compatible = "qcom,rpmcc-msm8212", .data = &rpm_clk_msm8212 },
 	{ .compatible = "qcom,rpmcc-msm8226", .data = &rpm_clk_msm8974 },
 	{ .compatible = "qcom,rpmcc-msm8916", .data = &rpm_clk_msm8916 },
 	{ .compatible = "qcom,rpmcc-msm8936", .data = &rpm_clk_msm8936 },
