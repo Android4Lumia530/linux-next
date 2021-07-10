@@ -32,6 +32,7 @@ description: |
         ipq6018
         ipq8074
         mdm9615
+        msm8212
         msm8226
         msm8916
         msm8974
@@ -125,6 +126,12 @@ properties:
               - qcom,apq8084-mtp
               - qcom,apq8084-sbc
           - const: qcom,apq8084
+
+      - items:
+          - enum:
+              - msft,lukla
+              - msft,chakra
+          - const: qcom,msm8212
 
       - items:
           - enum:
