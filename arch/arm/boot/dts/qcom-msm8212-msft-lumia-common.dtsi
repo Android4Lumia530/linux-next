@@ -9,162 +9,192 @@
 #include "qcom-msm8212.dtsi"
 
 / {
-	smd {
-		rpm {
-			rpm_requests {
-				pm8110-regulators {
-					vdd_l1_l2_l3_l4_l5-supply = <&pm8110_s3>;
-					vdd_l6_l7_l8_l9_l14-supply = <&pm8110_s4>;
-					vdd_l10_l11_l13-supply = <&pm8110_s4>;
-					// vdd_l12_l15_l16_l17_l18_l19_l20_l21_l22 unknown
+	/*
+	 * This enables graphical output via bootloader-enabled display 
+	 * and prevents disabling regulators that should be on
+	 */
+	chosen {
+		bootargs = "earlycon=efifb console=efifb clk_ignore_unused pd_ignore_unused";
 
-					s1 {
-						regulator-min-microvolt = <500000>;
-						regulator-max-microvolt = <1275000>;
-					};
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+	};
 
-					s2 {
-						regulator-min-microvolt = <900000>;
-						regulator-max-microvolt = <1350000>;
-						regulator-always-on;
-					};
+	usb_vbus: extcon-usb-dummy {
+		compatible = "linux,extcon-usb-dummy";
+	};
+};
 
-					s3 {
-						regulator-min-microvolt = <1350000>;
-						regulator-max-microvolt = <1500000>;
-					};
+&rpm_requests {
+	pm8110-regulators {
+		compatible = "qcom,rpm-pm8110-regulators";
+		vdd_l1_l2_l3_l4_l5-supply = <&pm8110_s3>;
+		vdd_l6_l7_l8_l9_l14-supply = <&pm8110_s4>;
+		vdd_l10_l11_l13-supply = <&pm8110_s4>;
 
-					s4 {
-						regulator-min-microvolt = <1500000>;
-						regulator-max-microvolt = <1800000>;
-					};
+		s1 {
+			regulator-min-microvolt = <500000>;
+			regulator-max-microvolt = <1275000>;
+		};
 
-					l1 {
-						regulator-min-microvolt = <1225000>;
-						regulator-max-microvolt = <1225000>;
-					};
+		s3 {
+			regulator-min-microvolt = <1350000>;
+			regulator-max-microvolt = <1500000>;
+		};
 
-					l2 {
-						/* Powers up DDR. We don't want that off */
-						regulator-min-microvolt = <1200000>;
-						regulator-max-microvolt = <1200000>;
-						regulator-always-on;
-					};
+		s4 {
+			regulator-min-microvolt = <1500000>;
+			regulator-max-microvolt = <1800000>;
+		};
 
-					l3 {
-						regulator-min-microvolt = <750000>;
-						regulator-max-microvolt = <1275000>;
-					};
+		l1 {
+			regulator-min-microvolt = <1225000>;
+			regulator-max-microvolt = <1225000>;
+		};
 
-					l4 {
-						regulator-min-microvolt = <1200000>;
-						regulator-max-microvolt = <1200000>;
-					};
+		l2 {
+			// Powers up DDR. We don't want that off
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1200000>;
+			regulator-always-on;
+		};
 
-					l5 {
-						regulator-min-microvolt = <600000>;
-						regulator-max-microvolt = <1300000>;
-					};
+		l3 {
+			regulator-min-microvolt = <750000>;
+			regulator-max-microvolt = <1275000>;
+		};
 
-					l6 {
-						regulator-min-microvolt = <1800000>;
-						regulator-max-microvolt = <1800000>;
-					};
+		l4 {
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1200000>;
+			regulator-always-on;
+		};
 
-					l7 {
-						regulator-min-microvolt = <2050000>;
-						regulator-max-microvolt = <2050000>;
-						regulator-boot-on;
-					};
+		l5 {
+			regulator-min-microvolt = <600000>;
+			regulator-max-microvolt = <1300000>;
+		};
 
-					l8 {
-						regulator-min-microvolt = <1800000>;
-						regulator-max-microvolt = <1800000>;
-						regulator-boot-on;
-					};
+		l6 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+		};
 
-					l9 {
-						regulator-min-microvolt = <2050000>;
-						regulator-max-microvolt = <2050000>;
-						regulator-boot-on;
-					};
+		l7 {
+			regulator-min-microvolt = <2050000>;
+			regulator-max-microvolt = <2050000>;
+		};
 
-					l10 {
-						regulator-min-microvolt = <1800000>;
-						regulator-max-microvolt = <1800000>;
-					};
+		l8 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+		};
 
-					l12 {
-						regulator-min-microvolt = <1800000>;
-						regulator-max-microvolt = <1800000>;
-						regulator-boot-on;
-					};
+		l9 {
+			regulator-min-microvolt = <2050000>;
+			regulator-max-microvolt = <2050000>;
+		};
 
-					l14 {
-						regulator-min-microvolt = <1800000>;
-						regulator-max-microvolt = <1800000>;
-					};
+		l10 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+		};
 
-					l15 {
-						regulator-min-microvolt = <1800000>;
-						regulator-max-microvolt = <3300000>;
-						regulator-boot-on;
-					};
+		l11 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			regulator-boot-on;
+		};
 
-					l16 {
-						regulator-min-microvolt = <3000000>;
-						regulator-max-microvolt = <3000000>;
-					};
+		l12 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+		};
 
-					l17 {
-						regulator-min-microvolt = <2950000>;
-						regulator-max-microvolt = <2950000>;
-					};
+		l13 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			regulator-boot-on;
+		};
 
-					l18 {
-						regulator-min-microvolt = <2950000>;
-						regulator-max-microvolt = <2950000>;
-					};
+		l14 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+		};
 
-					l19 {
-						regulator-min-microvolt = <2850000>;
-						regulator-max-microvolt = <2900000>;
-					};
+		l15 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+		};
 
-					l20 {
-						regulator-min-microvolt = <3075000>;
-						regulator-max-microvolt = <3075000>;
-					};
+		l16 {
+			regulator-min-microvolt = <3000000>;
+			regulator-max-microvolt = <3000000>;
+		};
 
-					l21 {
-						regulator-min-microvolt = <1800000>;
-						regulator-max-microvolt = <2950000>;
-					};
+		l17 {
+			regulator-min-microvolt = <2950000>;
+			regulator-max-microvolt = <2950000>;
+		};
 
-					l22 {
-						regulator-min-microvolt = <2800000>;
-						regulator-max-microvolt = <2850000>;
-					};
-				};
-			};
+		l18 {
+			regulator-min-microvolt = <2950000>;
+			regulator-max-microvolt = <2950000>;
+		};
+
+		l19 {
+			regulator-min-microvolt = <2850000>;
+			regulator-max-microvolt = <2900000>;
+		};
+
+		l20 {
+			regulator-min-microvolt = <3075000>;
+			regulator-max-microvolt = <3075000>;
+		};
+
+		l21 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <2950000>;
+		};
+
+		l22 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
 		};
 	};
 };
 
-&blsp_i2c1 {
+&blsp1_i2c1 {
 	status = "okay";
 
 	/* Touchscreen */
 };
 
-&blsp_i2c3 {
+&blsp1_i2c3 {
 	status = "okay";
 };
 
-&blsp_i2c5 {
+&blsp1_i2c5 {
 	status = "okay";
 };
 
 &sdhc_1 {
 	status = "ok";
+
+	vmmc-supply = <&pm8110_l17>;
+	vqmmc-supply = <&pm8110_l6>;
+};
+
+&usb {
+	status = "okay";
+	extcon = <&usb_vbus>;
+	dr_mode = "peripheral";
+};
+
+&usb_hs_phy {
+	extcon = <&usb_vbus>;
+
+	v1p8-supply = <&pm8110_l10>;
+	v3p3-supply = <&pm8110_l20>;
 };
