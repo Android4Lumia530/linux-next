@@ -6,15 +6,15 @@
  * Copyright (c) 2021, Konrad Dybcio
  * Copyright (c) 2021, Ivaylo Ivanov <ivo.ivanov@null.net>
  */
+
 #include "qcom-msm8212.dtsi"
 
 / {
 	/*
-	 * This enables graphical output via bootloader-enabled display 
-	 * and prevents disabling regulators that should be on
+	 * This prevents disabling regulators that should be on
 	 */
 	chosen {
-		bootargs = "earlycon=efifb console=efifb clk_ignore_unused pd_ignore_unused";
+		bootargs = "clk_ignore_unused pd_ignore_unused";
 
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -24,6 +24,51 @@
 	usb_vbus: extcon-usb-dummy {
 		compatible = "linux,extcon-usb-dummy";
 	};
+};
+
+&blsp_uart3 {
+	status = "okay";
+};
+
+&blsp_i2c1 {
+	status = "okay";
+
+	/* Synaptics or Himax Touchscreen */
+};
+
+&blsp_i2c3 {
+	status = "okay";
+};
+
+&blsp_i2c5 {
+	status = "okay";
+};
+
+&sdhc_1 {
+	status = "ok";
+
+	vmmc-supply = <&pm8110_l17>;
+	vqmmc-supply = <&pm8110_l6>;
+};
+
+&sdhc_2 {
+	status = "ok";
+
+	vmmc-supply = <&pm8110_l18>;
+	vqmmc-supply = <&pm8110_l21>;
+};
+
+&usb {
+	status = "okay";
+	dr_mode = "peripheral";
+	extcon = <&usb_vbus>;
+};
+
+&usb_hs_phy {
+	extcon = <&usb_vbus>;
+
+	v1p8-supply = <&pm8110_l10>;
+	v3p3-supply = <&pm8110_l20>;
 };
 
 &rpm_requests {
@@ -165,36 +210,24 @@
 	};
 };
 
-&blsp1_i2c1 {
-	status = "okay";
+&tlmm {
+	touch_pins: touch {
+		irq {
+			pins = "gpio1";
+			function = "gpio";
 
-	/* Touchscreen */
-};
+			drive-strength = <8>;
+			bias-pull-down;
+			input-enable;
+		};
 
-&blsp1_i2c3 {
-	status = "okay";
-};
+		reset {
+			pins = "gpio0";
+			function = "gpio";
 
-&blsp1_i2c5 {
-	status = "okay";
-};
-
-&sdhc_1 {
-	status = "ok";
-
-	vmmc-supply = <&pm8110_l17>;
-	vqmmc-supply = <&pm8110_l6>;
-};
-
-&usb {
-	status = "okay";
-	extcon = <&usb_vbus>;
-	dr_mode = "peripheral";
-};
-
-&usb_hs_phy {
-	extcon = <&usb_vbus>;
-
-	v1p8-supply = <&pm8110_l10>;
-	v3p3-supply = <&pm8110_l20>;
+			drive-strength = <8>;
+			bias-disable;
+			output-high;
+		};
+	};
 };
