@@ -28,6 +28,7 @@ properties:
           - qcom,pm8018-gpio
           - qcom,pm8038-gpio
           - qcom,pm8058-gpio
+          - qcom,pm8110-gpio
           - qcom,pm8150-gpio
           - qcom,pm8150b-gpio
           - qcom,pm8350-gpio
