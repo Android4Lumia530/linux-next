@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2021, Ivaylo Ivanov <ivo.ivanov@null.net>
+ */
+
+#include <dt-bindings/input/linux-event-codes.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/spmi/spmi.h>
+
+&spmi_bus {
+
+	pmic@0 {
+		compatible = "qcom,pm8110", "qcom,spmi-pmic";
+		reg = <0x0 SPMI_USID>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		rtc@6000 {
+			compatible = "qcom,pm8941-rtc";
+			reg = <0x6000>, <0x6100>;
+			reg-names = "rtc", "alarm";
+			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
+		};
+
+		pwrkey@800 {
+			compatible = "qcom,pm8941-pwrkey";
+			reg = <0x800>;
+			interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
+			debounce = <15625>;
+			bias-pull-up;
+		};
+
+		pm8110_gpios: gpios@c000 {
+			compatible = "qcom,pm8110-gpio";
+			reg = <0xc000>;
+			gpio-controller;
+			gpio-ranges = <&pm8110_gpios 0 0 4>;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			interrupt-cells =<2>;
+		};
+	};
+
+	pm8110_1: pm8110@1 {
+		compatible = "qcom,pm8110", "qcom,spmi-pmic";
+		reg = <0x1 SPMI_USID>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+	};
+};
