@@ -8,10 +8,11 @@
  */
 
 #include "qcom-msm8212.dtsi"
+#include "qcom-pm8110.dtsi"
 
 / {
 	/*
-	 * This prevents disabling regulators that should be on
+	 * This prevents disabling unused clocks that should be on
 	 */
 	chosen {
 		bootargs = "clk_ignore_unused pd_ignore_unused";
