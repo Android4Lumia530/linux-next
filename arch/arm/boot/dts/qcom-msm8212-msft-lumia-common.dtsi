@@ -72,6 +72,11 @@
 	v3p3-supply = <&pm8110_l20>;
 };
 
+&pm8110_resin {
+	status = "okay";
+	linux,code = <KEY_VOLUMEDOWN>;
+};
+
 &rpm_requests {
 	pm8110-regulators {
 		compatible = "qcom,rpm-pm8110-regulators";
@@ -211,6 +216,23 @@
 	};
 };
 
+&soc {
+	gpio_keys: gpio-keys {
+		compatible = "gpio-keys";
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&gpio_keys_pin_a>;
+
+		label = "GPIO Buttons";
+
+		volume-up {
+			label = "Volume Up";
+			gpios = <&tlmm 72 GPIO_ACTIVE_HIGH>;
+			linux,code = <KEY_VOLUMEUP>;
+		};
+	};
+};
+
 &tlmm {
 	touch_pins: touch {
 		irq {
@@ -229,6 +251,19 @@
 			drive-strength = <8>;
 			bias-disable;
 			output-high;
+		};
+	};
+
+	gpio_keys_pin_a: gpio-keys-active {
+		pinmux {
+			function = "gpio";
+			pins = "gpio72", "gpio73", "gpio74";
+		};
+
+		pinconf {
+			pins = "gpio72", "gpio73", "gpio74";
+			drive-strength = <2>;
+			bias-pull-up;
 		};
 	};
 };
