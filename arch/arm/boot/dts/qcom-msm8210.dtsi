@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Common Board Device Tree for
+ * Microsoft Mobile MSM8210 Platforms
+ *
+ * Copyright (c) 2021, Sebastiano Barezzi <barezzisebastiano@gmail.com>
+ */
+
+/dts-v1/;
+
+#include "qcom-msm8212.dtsi"
+
+/delete-node/ &CPU2;
+/delete-node/ &CPU3;
+
+/delete-node/ &cpu2_saw;
+/delete-node/ &cpu3_saw;
+
+/delete-node/ &cpu2_acc;
+/delete-node/ &cpu3_acc;
