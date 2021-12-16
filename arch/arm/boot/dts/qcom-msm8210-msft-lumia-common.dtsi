@@ -222,6 +222,15 @@
 	};
 };
 
+&smbb {
+	qcom,fast-charge-current-limit = <1275000>;
+	qcom,fast-charge-safe-voltage = <4200000>;
+	qcom,fast-charge-safe-current = <1000000>;
+	qcom,fast-charge-high-threshold-voltage = <4200000>;
+	qcom,auto-recharge-threshold-voltage = <4100000>;
+	qcom,minimum-input-voltage = <4300000>;
+};
+
 &soc {
 	gpio_keys: gpio-keys {
 		compatible = "gpio-keys";
