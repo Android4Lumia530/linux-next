@@ -27,10 +27,6 @@
 		mmc0 = &sdhc_1; /* eMMC */
 		mmc1 = &sdhc_2; /* MicroSD */
 	};
-
-	usb_vbus: extcon-usb-dummy {
-		compatible = "linux,extcon-usb-dummy";
-	};
 };
 
 &blsp_uart3 {
@@ -68,11 +64,11 @@
 &usb {
 	status = "okay";
 	dr_mode = "peripheral";
-	extcon = <&usb_vbus>;
+	extcon = <&smbb>;
 };
 
 &usb_hs_phy {
-	extcon = <&usb_vbus>;
+	extcon = <&smbb>;
 
 	v1p8-supply = <&pm8110_l10>;
 	v3p3-supply = <&pm8110_l20>;
